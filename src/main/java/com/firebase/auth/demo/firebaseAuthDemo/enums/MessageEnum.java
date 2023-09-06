@@ -6,7 +6,8 @@ package com.firebase.auth.demo.firebaseAuthDemo.enums;
  */
 public enum MessageEnum {
 
-    FIREBASE_EXCEPTION;
-
+    FIREBASE_EXCEPTION,
+    USER_RECORD_NOT_FOUND,
+    USER_NOT_FOUND;
 
 }

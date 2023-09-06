@@ -1,9 +1,2 @@
 server:
   port: 8888
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://securetoken.google.com/fir-projectv1-6e5d0
-          jwk-set-uri: https://www.googleapis.com/robot/v1/metadata/jwk/securetoken@system.gserviceaccount.com

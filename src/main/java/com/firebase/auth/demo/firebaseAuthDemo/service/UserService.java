@@ -3,10 +3,19 @@ package com.firebase.auth.demo.firebaseAuthDemo.service;
 import com.firebase.auth.demo.firebaseAuthDemo.model.User;
 import com.google.firebase.auth.UserRecord;
 
+import java.util.Map;
+
 public interface UserService {
-    UserRecord socialLogin(String idToken);
+    UserRecord getOriginalUserByIdToken(String idToken);
 
-    User get() throws Exception;
+    UserRecord getOriginalUserRecordByUid(String uid);
 
-    User save(String bio);
+    User getCustomUserByUid(String uid);
+
+    User getCustomUserByEmail(String uid);
+
+    User saveUserRecordInFireStore(String bio, String uid);
+
+    Map<String, Object> getOriginalUserAndFireStoreUser(String uid);
+
 }

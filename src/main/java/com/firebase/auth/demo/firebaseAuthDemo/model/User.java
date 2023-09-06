@@ -14,8 +14,8 @@ public class User {
     private String uid;
     private String name;
     private String email;
+    private String profilePhoto;
     private long lastLogin;
     private String bio;
 
-
-}	
+}

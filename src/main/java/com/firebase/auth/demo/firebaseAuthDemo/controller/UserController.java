@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -57,6 +58,15 @@ public class UserController {
         long endTime = System.currentTimeMillis();
         logger.info("Time taken to get User by email: {} Milliseconds", (endTime - startTime));
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/custom/email/all")
+    public ResponseEntity<List<User>> getCustomUserListByEmail(@RequestParam("email") String email) {
+        long startTime = System.currentTimeMillis();
+        List<User> userList = userService.getCustomUserListByEmail(email);
+        long endTime = System.currentTimeMillis();
+        logger.info("Time taken to get User by email: {} Milliseconds", (endTime - startTime));
+        return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
     @PostMapping("/custom")

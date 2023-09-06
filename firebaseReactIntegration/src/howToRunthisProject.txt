@@ -1,0 +1,9 @@
+firs install dependency related to firebase 
+--> npm install firebase
+
+updated the existing dependency
+--> npm i - to install update
+--> npm start - to run
+
+start the App
+--> npm start

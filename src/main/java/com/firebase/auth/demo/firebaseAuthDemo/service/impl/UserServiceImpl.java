@@ -13,9 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -129,6 +127,18 @@ public class UserServiceImpl implements UserService {
             logger.error("Error: {}", e.getMessage());
         }
         return user;
+    }
+
+    @Override
+    public List<User> getCustomUserListByEmail(String email) {
+        logger.info("Fetching Custom User by given email: {}", email);
+       List<User> userList = new ArrayList<>();
+        try {
+            userList = userRepository.getUserListByEmail(email);
+        } catch (ExecutionException | InterruptedException e) {
+            logger.error("Error: {}", e.getMessage());
+        }
+        return userList;
     }
 
     @Override

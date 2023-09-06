@@ -9,8 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collector;
 
 @Service
 public class UserRepository {
@@ -46,6 +49,22 @@ public class UserRepository {
 		}
 		logger.info("User not found of e: {}", email);
 		return null;
+	}
+
+	public List<User> getUserListByEmail(String email) throws InterruptedException, ExecutionException {
+		Firestore db = FirestoreClient.getFirestore();
+		ApiFuture<QuerySnapshot> querySnapshotApiFuture = db.collection("user").whereEqualTo("email", email).get();
+		List<QueryDocumentSnapshot> documents = querySnapshotApiFuture.get().getDocuments();
+		List<User> userList = new ArrayList<>();
+		if (!documents.isEmpty()) {
+			logger.info("UserList found of email: {}", email);
+			documents.forEach(document -> {
+				userList.add(document.toObject(User.class));
+			});
+			return userList;
+		}
+		logger.info("UserList not found of uid: {}", email);
+		return Collections.emptyList();
 	}
 
 }
